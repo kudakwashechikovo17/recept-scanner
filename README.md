@@ -6,9 +6,11 @@ parsed data.
 
 ## Setup
 1. Create a Python virtual environment and activate it.
-2. Install dependencies:
+2. Install dependencies with pip or run the provided helper script:
    ```bash
    pip install -r requirements.txt
+   # or simply
+   ./setup.sh
    ```
 3. Ensure your AWS credentials are configured so `boto3` can access
    Textract.
