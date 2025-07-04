@@ -12,6 +12,8 @@ parsed data.
    # or simply
    ./setup.sh
    ```
+   (Ensure you have internet access or have pre-downloaded the required
+   packages. The setup script will fail without network connectivity.)
 3. Ensure your AWS credentials are configured so `boto3` can access
    Textract.
 4. Run the app:
@@ -21,3 +23,5 @@ parsed data.
 
 The application will create a local SQLite database (`receipts.db`) and
 an `uploads/` directory for storing documents.
+
+The app provides pages to upload receipts, browse uploaded documents, and view an aggregated dashboard of extraction results.

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard - Earthsafe{% endblock %}
+{% block content %}
+<h1 class="mb-3">Receipt Dashboard</h1>
+{% if receipts %}
+<table class="table table-hover">
+  <thead class="table-light">
+    <tr>
+      <th>ID</th>
+      <th>File</th>
+      <th>Vendor</th>
+      <th>Date</th>
+      <th>Total</th>
+      <th>Uploaded</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in receipts %}
+    <tr>
+      <td>{{ r[0] }}</td>
+      <td>{{ r[1] }}</td>
+      <td>{{ r[2] }}</td>
+      <td>{{ r[3] }}</td>
+      <td>{{ r[4] }}</td>
+      <td>{{ r[5] }}</td>
+      <td><a class="btn btn-sm btn-secondary" href="{{ url_for('receipt_detail', receipt_id=r[0]) }}">View</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No receipts uploaded yet.</p>
+{% endif %}
+{% endblock %}

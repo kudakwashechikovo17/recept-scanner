@@ -95,6 +95,29 @@ def receipts():
     return render_template('receipts.html', receipts=receipts)
 
 
+@app.route('/dashboard')
+def dashboard():
+    conn = sqlite3.connect(DB_PATH)
+    rows = conn.execute(
+        'SELECT id, filename, uploaded_at, summary FROM receipts ORDER BY uploaded_at DESC'
+    ).fetchall()
+    conn.close()
+    receipts = []
+    for row in rows:
+        rid, filename, uploaded_at, summary_json = row
+        summary = json.loads(summary_json)
+        vendor = summary.get('VENDOR_NAME') or summary.get('VENDOR') or summary.get('MerchantName')
+        total = summary.get('TOTAL') or summary.get('TOTAL_AMOUNT') or summary.get('Total')
+        date = (
+            summary.get('INVOICE_RECEIPT_DATE')
+            or summary.get('DATE')
+            or summary.get('PurchaseDate')
+        )
+        receipts.append((rid, filename, vendor or '', date or '', total or '', uploaded_at))
+
+    return render_template('dashboard.html', receipts=receipts)
+
+
 @app.route('/receipts/<int:receipt_id>')
 def receipt_detail(receipt_id):
     conn = sqlite3.connect(DB_PATH)
