@@ -5,3 +5,6 @@ __pycache__/
 *.egg-info/
 .env
 venv/
+uploads/
+receipts.db
+wheels/*.whl

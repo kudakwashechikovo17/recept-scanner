@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Documents - Earthsafe{% endblock %}
+{% block content %}
+<h1 class="mb-3">Uploaded Documents</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>File</th>
+      <th>Uploaded At</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in receipts %}
+    <tr>
+      <td>{{ r[0] }}</td>
+      <td>{{ r[1] }}</td>
+      <td>{{ r[2] }}</td>
+      <td><a class="btn btn-sm btn-secondary" href="{{ url_for('receipt_detail', receipt_id=r[0]) }}">View</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
